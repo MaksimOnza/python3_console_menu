@@ -18,13 +18,3 @@ main_menu = Menu([
     ExitItem(),
 ])
 main_menu.start()
-
-print()
-print("END")
-
-
-#Закончить менюшку
-#chat
-#не затягивать
-#чтиво документация
-#залить на git и сохранять
