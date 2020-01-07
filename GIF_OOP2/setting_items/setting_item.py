@@ -2,6 +2,7 @@ from menu_items.menu_item import MenuItem
 from menu import Menu 
 
 class SettingItem(MenuItem):
+
 	def __init__(self, items):
 		self.__setting_menu = Menu(items)
 
