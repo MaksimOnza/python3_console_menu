@@ -4,7 +4,7 @@ from shows_images.simple_image import ShowImage
 class DisplayItem(MenuItem):
 
 	def start(self):
-		ShowImage()
+		ShowImage().start()
 		input()
 
 	def get_name(self):

@@ -1,9 +1,6 @@
 class ShowImage:
 
-    def __init__(self):
-        self.image_ascii()
-
-    def image_ascii(self):
+    def start(self):
         
         print('.............................................')
         print('.............................................')

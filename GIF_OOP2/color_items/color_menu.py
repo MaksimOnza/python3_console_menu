@@ -35,9 +35,7 @@ class ColorMenu:
                 8:Grey
                 }
 
-    #def __init__(self):
-        #self.__items = items
-
+                
     def start(self):
         self.clear.clear_display()
         j = 1
