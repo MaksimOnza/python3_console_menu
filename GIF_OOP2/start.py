@@ -5,13 +5,20 @@ from menu_items.display_item import DisplayItem
 from setting_items.setting_item import SettingItem
 from setting_items.color_item import ColorItem
 from setting_items.speed_item import SpeedItem
+from color_items.color_select import ColorSelect
+
+import os
+os.system('color 4')
 
 
 main_menu = Menu([
     LaunchItem(),
     DisplayItem(),
     SettingItem([
-    	ColorItem(),
+        ColorItem([
+            ColorSelect(),
+            ExitItem(),
+            ]),
         SpeedItem(),
         ExitItem(),
                 ]),
