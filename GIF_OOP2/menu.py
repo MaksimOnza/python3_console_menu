@@ -1,8 +1,9 @@
-import platform, os
+from clear_display import ClearDisplay
 
 class Menu:
         
     EXIT = 'e'
+    __clear = ClearDisplay()
 
     def __init__(self, items):
         self.__items = items
@@ -10,12 +11,9 @@ class Menu:
 
 
     def start(self):
-        if(platform.system() == 'Linux'):
-            os.system('clear')
-        if(platform.system() == 'Windows'):
-            os.system('cls')
         __key = ''
         while __key != self.EXIT:
+            self.__clear.clear_display()
             for item in self.__items:
                 print(item.get_name() + " -> " + item.get_key_name())
 

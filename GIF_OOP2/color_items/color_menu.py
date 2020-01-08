@@ -1,4 +1,8 @@
+from clear_display import ClearDisplay
+
 class ColorMenu:
+
+    clear = ClearDisplay()
 
     Red = '\033[91m'
     Green = '\033[92m'
@@ -35,6 +39,7 @@ class ColorMenu:
         #self.__items = items
 
     def start(self):
+        self.clear.clear_display()
         j = 1
         for color in self.dict_color2:
             print(self.dict_color2[color] + color + " -> " + str(j))

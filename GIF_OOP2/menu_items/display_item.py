@@ -5,6 +5,7 @@ class DisplayItem(MenuItem):
 
 	def start(self):
 		ShowImage()
+		input()
 
 	def get_name(self):
 		return "Display"
