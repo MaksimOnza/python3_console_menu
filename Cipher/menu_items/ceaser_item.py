@@ -4,10 +4,10 @@ from menu import Menu
 class CeaserItem(MenuItem):
     
     def __init__(self, items):
-        self.__morze_start = Menu(items)
+        pass
 
     def start(self):
-        self.__morze_start.start()
+        print("This part in developing")
 
     def get_name(self):
         return "Ceaser"
