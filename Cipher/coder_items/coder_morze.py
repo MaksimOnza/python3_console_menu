@@ -1,5 +1,5 @@
 from menu_items.menu_item import MenuItem
-from morze.morze import Morze
+from cipher_classes.morze import Morze
 
 class CoderMorze(MenuItem):
     
