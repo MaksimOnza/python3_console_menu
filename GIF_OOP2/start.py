@@ -7,9 +7,6 @@ from setting_items.color_item import ColorItem
 from setting_items.speed_item import SpeedItem
 from color_items.color_select import ColorSelect
 
-import os
-os.system('color 4')
-
 
 main_menu = Menu([
     LaunchItem(),

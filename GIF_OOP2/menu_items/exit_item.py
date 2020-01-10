@@ -2,13 +2,7 @@ from menu_items.menu_item import MenuItem
 import platform, os
 
 class ExitItem(MenuItem):
-    __count = 2
-    
-    def __init__(self):
-        self.__count += 1
 
-    def count_fun(self):
-        return self.__count
 
     def start(self):
         if(platform.system() == 'Linux'):
