@@ -1,17 +1,16 @@
 from menu_items.menu_item import MenuItem
 from menu import Menu
 
-class FirstItem(MenuItem):
+class StartItem(MenuItem):
 
     def __init__(self, items):
-        print("Выберите ресурс")
-        self.__morze_start = Menu(items)
+        self.__first_item_start = Menu(items)
 
     def start(self):
-        self.__morze_start.start()
+        self.__first_item_start.start()
 
     def get_name(self):
-        return "Morze"
+        return "StartItem"
 
     def get_key_name(self):
         return "m"

@@ -1,16 +1,16 @@
 from menu_items.menu_item import MenuItem
 from menu import Menu
 
-class City(MenuItem):
+class DisplyWeather(MenuItem):
     
-    def __init__(self, items):
+    def __init__(self):
         pass
 
     def start(self):
-        print("CitySelection")
+        print("DisplyWeather")
 
     def get_name(self):
-        return "CitySelection"
+        return "DisplyWeather"
 
     def get_key_name(self):
         return "c"

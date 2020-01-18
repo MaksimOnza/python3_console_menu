@@ -1,19 +1,19 @@
 from menu_items.menu_item import MenuItem
 from menu import Menu
 
-class CeaserItem(MenuItem):
-    
+class StartItem(MenuItem):
+
     def __init__(self, items):
-        pass
+        self.__start = Menu(items)
 
     def start(self):
-        print("This part in developing")
+        self.__start.start()
 
     def get_name(self):
-        return "Ceaser"
+        return "Start"
 
     def get_key_name(self):
-        return "c"
+        return "s"
 
     def get_key(self):
-        return 'c'
+        return 's'

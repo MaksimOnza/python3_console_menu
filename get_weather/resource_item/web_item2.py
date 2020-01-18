@@ -1,19 +1,19 @@
 from menu_items.menu_item import MenuItem
 from menu import Menu
 
-class City(MenuItem):
-    
-    def __init__(self, items):
+class WebItem2(MenuItem):
+
+    def __init__(self):
         pass
 
     def start(self):
-        print("CitySelection")
+        self.__start.start()
 
     def get_name(self):
-        return "CitySelection"
+        return "WebItem2"
 
     def get_key_name(self):
-        return "c"
+        return "2"
 
     def get_key(self):
-        return 'c'
+        return '2'
