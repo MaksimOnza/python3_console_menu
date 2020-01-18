@@ -1,13 +1,19 @@
 from menu_items.menu_item import MenuItem
 from menu import Menu
+from top_list import TopList
 
 class WebItem1(MenuItem):
 
+    path = "./data/web.txt"
+
     def __init__(self):
-        pass
+        self.var = TopList()
 
     def start(self):
-        self.__start.start()
+        #file =  open(self.path, 'w')
+        #file.write(self.get_name())
+        #file.close()
+        self.test_var()
 
     def get_name(self):
         return "WebItem1"
@@ -17,3 +23,6 @@ class WebItem1(MenuItem):
 
     def get_key(self):
         return '1'
+
+    def test_var(self):
+        self.var.experement_var = self.get_name()

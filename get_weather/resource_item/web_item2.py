@@ -3,11 +3,13 @@ from menu import Menu
 
 class WebItem2(MenuItem):
 
-    def __init__(self):
-        pass
+    path = "./data/web.txt"
+
 
     def start(self):
-        self.__start.start()
+        file =  open(self.path, 'w')
+        file.write(self.get_name())
+        file.close()
 
     def get_name(self):
         return "WebItem2"
