@@ -1,6 +1,5 @@
 from menu import Menu
 from menu_items.menu_item import MenuItem
-from display.display_resource import DisplayResource
 
 class WebSelect(MenuItem):
 

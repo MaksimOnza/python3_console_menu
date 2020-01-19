@@ -16,7 +16,7 @@ class Menu:
         __key = ''
         while __key != self.EXIT:
             self.__clear.clear_display()
-            print(self.__top_list.classmethod() + " ------- " + self.__top_list.print_city())
+            print(self.__top_list.print_web() + " ------- " + self.__top_list.print_city())
             print("******************")
             for item in self.__items:
                 print(item.get_name() + " -> " + item.get_key_name())

@@ -1,16 +1,16 @@
 from menu_items.menu_item import MenuItem
 from menu import Menu
+from top_list import TopList
 
-class City(MenuItem):
-    
-    def __init__(self, items):
-        pass
+class CitySelect(MenuItem):
 
     def start(self):
-        print("CitySelection")
+        print("Enter the City or town")
+        enter_city = input()
+        TopList.selected_city = enter_city
 
     def get_name(self):
-        return "CitySelection"
+        return "CitySelect"
 
     def get_key_name(self):
         return "c"

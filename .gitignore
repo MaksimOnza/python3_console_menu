@@ -1,0 +1,9 @@
+get_weather/__pycache__
+get_weather/menu_item/__pycache__
+get_weather/resource_item/__pycache__
+get_weather/display/__pycache__
+get_weather/connect/__pycache__
+test.py
+*.txt
+html_weather.py
+weather.py
