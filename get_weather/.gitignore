@@ -1,9 +1,0 @@
-/__pycache__
-/menu_item/__pycache__
-/resource_item/__pycache__
-/display/__pycache__
-/connect/__pycache__
-test.py
-*.txt
-html_weather.py
-weather.py
