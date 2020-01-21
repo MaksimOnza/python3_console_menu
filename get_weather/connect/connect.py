@@ -20,7 +20,9 @@ class Connect:
 			self.__key = self.web_obj.query_link['key'][web]
 			self.__after_web = self.web_obj.query_link['after_web'][web]
 			self.element_first_level = self.web_obj.query_link['first_level'][self.__web]
-			self.elemene_second_level = self.web_obj.query_link['temperature'][self.__web]
+			self.elemenet_second_level = self.web_obj.query_link['second_level'][self.__web]
+			self.elemenet_third_level = self.web_obj.query_link['third_level'][self.__web]
+			self.elemenet_fourth_level = self.web_obj.query_link['fourth_level'][self.__web]
 			self.connecting()
 		else:
 			print("Wrong web adres")
@@ -37,4 +39,9 @@ class Connect:
 		output = self.conn.getresponse()
 		body = output.read()
 		loaded_json = json.loads(body)
-		print(loaded_json[self.element_first_level][self.elemene_second_level])#
+		if self.__web == self.dic_web_key[1]:
+			print("%.2f"%(loaded_json[self.element_first_level][self.elemene_second_level]-273))#
+		elif self.__web == self.dic_web_key[2]:
+			print(loaded_json[self.element_first_level][self.elemenet_second_level][self.elemenet_third_level][self.elemenet_fourth_level])
+		else:
+			print(loaded_json[self.element_first_level][self.elemene_second_level])
