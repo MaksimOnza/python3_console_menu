@@ -4,11 +4,11 @@ import json
 #import requests
 
 key = '719d3fe6203f73509524e0bca348cb53'
-city = "Rzhavchik"
+city = "kharkiv"
 mode = 'current'
 
 conn = http.client.HTTPConnection("api.weatherstack.com")
-conn.request("GET", f'/{mode}?access_key={key}&query={city}&historical_date={hist_date}')
+conn.request("GET", f'/{mode}?access_key={key}&query={city}')
 output = conn.getresponse()
 body = output.read()
 loaded_json = json.loads(body)
