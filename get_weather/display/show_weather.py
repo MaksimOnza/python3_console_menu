@@ -1,5 +1,6 @@
 from top_list import TopList
 from connect.connect import Connect
+from display.display_temp import DisplayTemp
 
 class ShowWeather:
 
@@ -7,7 +8,10 @@ class ShowWeather:
 		self.top_list = TopList()
 		self.web = self.get_web()
 		self.city = self.get_city()
-		self.show = Connect(self.web, self.city)
+		self.web_connect = Connect(self.web, self.city)
+		self.display = DisplayTemp(self.web)
+		self.display.display_json_data(self.web_connect.to_display()) 
+
 	
 	def get_web(self):
 		return self.top_list.print_web()
@@ -16,4 +20,4 @@ class ShowWeather:
 		return self.top_list.print_city()
 
 	def show_weather(self):
-		self.show.display_weather()
+		self.web_connect.display_weather()

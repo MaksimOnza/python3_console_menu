@@ -1,11 +1,11 @@
 from clear_display import ClearDisplay
-from top_list import TopList
+from display.display_top_list import DisplayTopList
 
 class Menu:
         
     EXIT = 'e'
     __clear = ClearDisplay()
-    __top_list = TopList()
+    __top_list = DisplayTopList()
 
     def __init__(self, items):
         self.__items = items
@@ -16,8 +16,7 @@ class Menu:
         __key = ''
         while __key != self.EXIT:
             self.__clear.clear_display()
-            print(self.__top_list.print_web() + " ------- " + self.__top_list.print_city())
-            print("******************")
+            self.__top_list.display_top_list()
             for item in self.__items:
                 print(item.get_name() + " -> " + item.get_key_name())
 

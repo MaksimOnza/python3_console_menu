@@ -7,7 +7,6 @@ class WeatherItem(MenuItem):
 
     def start(self):
         s = ShowWeather()
-        s.show_weather()
         input()
 
     def get_name(self):
