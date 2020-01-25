@@ -1,21 +1,23 @@
 from menu_items.menu_item import MenuItem
 from menu import Menu
-from top_list import TopList
-from data.data_link import DataLink
+from data.web3 import Web3
+from data.write_web_data import WriteWebData
+from data.key_symbol import KeySymbol
 
 class WebItem3(MenuItem):
 
     def __init__(self):
-        self.web_name = DataLink()
+        self.web_data = Web3()
+        self.__key = KeySymbol()
 
     def start(self):
-        TopList.selected_web = self.get_name()
+        WriteWebData(self.web_data)
 
     def get_name(self):
-        return self.web_name.web3
+        return self.web_data.name
 
     def get_key_name(self):
-        return "3"
+        return self.__key.DICT_KEY_WEB[self.get_name()]
 
     def get_key(self):
-        return '3'
+        return self.__key.DICT_KEY_WEB[self.get_name()]

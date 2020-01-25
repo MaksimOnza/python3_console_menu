@@ -6,7 +6,7 @@ from resource_item.web_item1 import WebItem1
 from resource_item.web_item2 import WebItem2
 from resource_item.web_item3 import WebItem3
 from display.show_weather import ShowWeather
-from resource_item.weather_item import WeatherItem
+from resource_item.weather_item import WeatherSelect
 
 
 
@@ -18,7 +18,7 @@ main_menu = Menu([
         ExitItem()
             ]),
     CitySelect(),
-    WeatherItem(),
+    WeatherSelect(),
     ExitItem()
     ])
 main_menu.start()

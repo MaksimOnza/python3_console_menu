@@ -3,14 +3,14 @@ from menu import Menu
 from top_list import TopList
 from display.show_weather import ShowWeather
 
-class WeatherItem(MenuItem):
+class WeatherSelect(MenuItem):
 
     def start(self):
         s = ShowWeather()
         input()
 
     def get_name(self):
-        return "WeatherItem"
+        return "WeatherSelect"
 
     def get_key_name(self):
         return "s"
