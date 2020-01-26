@@ -7,4 +7,4 @@ class DisplayTopList:
 
     def display_top_list(self):
         print(self.__top_list.print_web() + " ------- " + self.__top_list.print_city())
-        print("******************")
+        print("*"*45)

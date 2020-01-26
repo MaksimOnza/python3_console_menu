@@ -3,12 +3,11 @@ from data.resource import Resource
 
 class Web3(Resource):
 
-
 	def __init__(self):
 		self.name = 'worldweatheronline.com'
 		self.key = 'd48ab845d78e492081b192620202001'
 		self.add_link = 'premium/v1/weather.ashx'
-		self.output_param = ['current', 'temperature']
+		self.output_param = ['data', 'current_condition',0 ,'temp_C']
 		self.list_name_param = {'key': 'format=json&key', 'city': 'q'}
 
 	def get_name(self):
