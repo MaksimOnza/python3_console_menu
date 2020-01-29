@@ -3,6 +3,7 @@ class TransitData():
     selected_city = "city not selected"
     selected_web = "web not selected"
 
+    type_web = ''
     name = ''
     key = ''
     add_link = ''
@@ -14,6 +15,10 @@ class TransitData():
     def __init__(self):
         self.selected_city = "city not selected"
         self.selected_web = "web not selected"
+
+    @classmethod 
+    def get_type_web(cls):
+        return cls.type_web
 
     @classmethod 
     def print_web(cls):

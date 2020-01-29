@@ -3,6 +3,7 @@ from data.transit_data import TransitData
 class WriteWebData:
 
     def __init__(self, data):
+        TransitData.type_web =  data.get_type_web()
         TransitData.selected_web = data.get_name()
         TransitData.name = data.get_name()
         TransitData.key = data.get_key()
