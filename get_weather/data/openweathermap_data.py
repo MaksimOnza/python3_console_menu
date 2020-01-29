@@ -1,7 +1,7 @@
-from data.resource import Resource
+from data.web_resource import WebResource
 
 
-class Web2(Resource):
+class OpenweathermapData(WebResource):
 
 	def __init__(self):
 		self.name = 'openweathermap.org'

@@ -1,7 +1,7 @@
-from data.resource import Resource
+from data.web_resource import WebResource
 
 
-class Web3(Resource):
+class WorldweatheronlineData(WebResource):
 
 	def __init__(self):
 		self.name = 'worldweatheronline.com'

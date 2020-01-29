@@ -1,4 +1,4 @@
-class TopList():
+class TransitData():
 
     selected_city = "city not selected"
     selected_web = "web not selected"

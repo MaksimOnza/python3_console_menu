@@ -1,4 +1,4 @@
-from clear_display import ClearDisplay
+from display.clear_display import ClearDisplay
 from display.display_top_list import DisplayTopList
 from data.key_symbol import KeySymbol
 import logging

@@ -1,9 +1,7 @@
 from menu_items.menu_item import MenuItem
-from menu import Menu
-from top_list import TopList
 from display.show_weather import ShowWeather
 
-class WeatherSelect(MenuItem):
+class ShowWeatherItem(MenuItem):
 
     def start(self):
         s = ShowWeather()

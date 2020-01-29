@@ -1,15 +1,15 @@
 from menu_items.menu_item import MenuItem
 from menu import Menu
-from data.web1 import Web1
+from data.openweathermap_data import OpenweathermapData
 from data.write_web_data import WriteWebData
 from data.key_symbol import KeySymbol
 
-class WebItem1(MenuItem):
+class OpenweathermapItem(MenuItem):
 
     def __init__(self):
-        self.web_data = Web1()
+        self.web_data = OpenweathermapData()
         self.__key = KeySymbol()
-        
+
     def start(self):
         WriteWebData(self.web_data)
 

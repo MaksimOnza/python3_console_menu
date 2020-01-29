@@ -1,11 +1,11 @@
-from top_list import TopList
+from data.transit_data import TransitData
 
 class WriteWebData:
 
     def __init__(self, data):
-        TopList.selected_web = data.get_name()
-        TopList.name = data.get_name()
-        TopList.key = data.get_key()
-        TopList.add_link = data.get_add_link()
-        TopList.output_param = data.get_output_param()
-        TopList.list_name_param = data.get_list_name_param()
+        TransitData.selected_web = data.get_name()
+        TransitData.name = data.get_name()
+        TransitData.key = data.get_key()
+        TransitData.add_link = data.get_add_link()
+        TransitData.output_param = data.get_output_param()
+        TransitData.list_name_param = data.get_list_name_param()

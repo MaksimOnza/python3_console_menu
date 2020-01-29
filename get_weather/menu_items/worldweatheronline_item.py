@@ -1,13 +1,13 @@
 from menu_items.menu_item import MenuItem
 from menu import Menu
-from data.web3 import Web3
+from data.worldweatheronline_data import WorldweatheronlineData
 from data.write_web_data import WriteWebData
 from data.key_symbol import KeySymbol
 
-class WebItem3(MenuItem):
+class WorldweatheronlineItem(MenuItem):
 
     def __init__(self):
-        self.web_data = Web3()
+        self.web_data = WorldweatheronlineData()
         self.__key = KeySymbol()
 
     def start(self):

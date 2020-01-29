@@ -1,7 +1,7 @@
 from menu import Menu
 from menu_items.menu_item import MenuItem
 
-class WebSelect(MenuItem):
+class WebSelectItem(MenuItem):
 
     def __init__(self, items):
         self.__name = "WebSelect"
