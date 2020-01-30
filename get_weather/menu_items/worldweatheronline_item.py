@@ -1,5 +1,5 @@
 from menu_items.menu_item import MenuItem
-from menu import Menu
+from data.type_web import TypeWeb
 from data.worldweatheronline_data import WorldweatheronlineData
 from data.write_web_data import WriteWebData
 from data.key_symbol import KeySymbol
@@ -8,6 +8,7 @@ class WorldweatheronlineItem(MenuItem):
 
     def __init__(self):
         self.web_data = WorldweatheronlineData()
+        TypeWeb.set_type_web(self.web_data.type_web)
         self.__key = KeySymbol()
 
     def start(self):

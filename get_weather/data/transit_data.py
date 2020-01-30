@@ -1,9 +1,8 @@
-class TransitData():
+class TransitData:
 
     selected_city = "city not selected"
     selected_web = "web not selected"
 
-    type_web = ''
     name = ''
     key = ''
     add_link = ''

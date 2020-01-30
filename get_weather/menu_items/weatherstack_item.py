@@ -1,13 +1,14 @@
 from menu_items.menu_item import MenuItem
-from menu import Menu
 from data.weatherstack_data import WeatherstackData
 from data.write_web_data import WriteWebData
 from data.key_symbol import KeySymbol
+from data.type_web import TypeWeb
 
 class WeatherstackItem(MenuItem):
 
     def __init__(self):
         self.web_data = WeatherstackData()
+        TypeWeb.set_type_web(self.web_data.type_web)
         self.__key = KeySymbol()
         
     def start(self):

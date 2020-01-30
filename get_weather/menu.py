@@ -8,7 +8,7 @@ logging.basicConfig(filename="sample.log", level=logging.INFO)
 class Menu:
         
     __clear = ClearDisplay()
-    __top_list = DisplayTopList()
+    #__top_list = DisplayTopList()
 
     def __init__(self, items):
         self.__key = KeySymbol()
@@ -18,7 +18,7 @@ class Menu:
         key = ''
         while key != self.__key.KEY_EXIT:
             self.__clear.clear_display()
-            self.__top_list.display_top_list()
+            #self.__top_list.display_top_list()
             for item in self.__items:
                 print(item.get_name() + " -> " + item.get_key_name())
 

@@ -1,10 +1,16 @@
 from data.transit_data import TransitData
+from data.html_transit_data import HTMLTransitData
+from data.type_web import TypeWeb
  
 class DisplayTemp:
 
     def __init__(self, web):
-        self.respons_param = TransitData
         self.__web = web
+        if TypeWeb.get_type_web() == 'api':
+            self.respons_param = TransitData
+        elif TypeWeb.get_type_web() == 'html':
+            self.respons_param = HTMLTransitData
+       
 
     def display_json_data(self, loaded_json):
         for iter in self.respons_param.output_param:
