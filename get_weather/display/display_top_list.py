@@ -1,6 +1,7 @@
 from data.transit_data import TransitData
 from data.html_transit_data import HTMLTransitData
 from data.type_web import TypeWeb
+import shutil
 
 class DisplayTopList:
 
@@ -18,5 +19,9 @@ class DisplayTopList:
 
     def display_top_list(self):
         self.check_type_web()
-        print(self.__top_list.print_web() + " ------- " + self.__top_list.print_city())
-        print("*"*45)
+        width = int(self.get_termwidth()/2)-20
+        print(' ' * width + self.__top_list.print_web() + " ------- " + TypeWeb.print_city())
+        print(' ' * width + "*"*45)
+
+    def get_termwidth(self, default=None):
+        return shutil.get_terminal_size((default, default)).columns

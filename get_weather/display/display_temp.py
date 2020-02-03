@@ -4,23 +4,34 @@ from data.type_web import TypeWeb
  
 class DisplayTemp:
 
-    def __init__(self, web):
+    __KELVIN = 273
+    __TEMP_POINT = 200
+    __DEGREE_SIGN = u'\xb0'
+    __CELSIY_SYGN = 'C'
+
+    def __init__(self, web, json):
         self.__web = web
         if TypeWeb.get_type_web() == 'api':
             self.respons_param = TransitData
         elif TypeWeb.get_type_web() == 'html':
             self.respons_param = HTMLTransitData
-       
+        self.display_json_data(json)
+
 
     def display_json_data(self, loaded_json):
-        for iter in self.respons_param.output_param:
-            temp = loaded_json[iter]
-            loaded_json = temp
-        if int(loaded_json) > 200:
-            print("%.2f"%(loaded_json - 273))
-        else:
-            print(loaded_json)
+        try:
+            for iter in self.respons_param.output_param:
+                temp = loaded_json[iter]
+                loaded_json = temp
+            if int(loaded_json) > self.__TEMP_POINT:
+                print("%.2f"%(loaded_json - self.__KELVIN), self.__DEGREE_SIGN, end='')
+                print(self.__CELSIY_SYGN)
+            else:
+                print(loaded_json, self.__DEGREE_SIGN, end='' )
+                print(self.__CELSIY_SYGN)
+        except:
+            print('Somsing wrong, maybe city?')
 
-    def display(self, loaded_json):
-        for param in self.respons_param:
-            print()
+    #def display(self, loaded_json):
+        #for param in self.respons_param:
+         #   print()

@@ -12,12 +12,13 @@ class CityItem(MenuItem):
 	def start(self):
 		print("Enter the City or town")
 		print('\033[91m'+'If selected WEB = Sinoptyk')
-		print('Enter a city on ruissia'+'\033[0m')
+		print('Enter a city on russia'+'\033[0m')
 		enter_city = input()
-		if TypeWeb.get_type_web() == 'api':
-			TransitData.selected_city = enter_city
-		elif TypeWeb.get_type_web() == 'html':
-			HTMLTransitData.selected_city = enter_city
+		TypeWeb.selected_city = enter_city
+		#if TypeWeb.get_type_web() == 'api':
+		#	TransitData.selected_city = enter_city
+		#elif TypeWeb.get_type_web() == 'html':
+		#	HTMLTransitData.selected_city = enter_city
 
 	def get_name(self):
 		return "CitySelect"
