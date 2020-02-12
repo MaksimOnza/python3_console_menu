@@ -30,7 +30,7 @@ main_menu = Menu([
         WeatherstackItem(state),
         OpenweathermapItem(state),
         WorldweatheronlineItem(state),
-        SinoptykItem(State),
+        SinoptykItem(state),
         ExitItem()
     ]),
     CityItem(state),
