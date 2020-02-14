@@ -32,7 +32,7 @@ class HttpProcessor(http.server.BaseHTTPRequestHandler):
 		self.end_headers()
 		self.url_parsing(self.path)
 		self.temperature = self.get_temperature(self.resource, self.city)
-		self.get_description()
+		self.description = self.get_description()
 		self.wfile.write(json.dumps({
 			'name_city': self.city,
 			'temperature': self.temperature,
@@ -51,7 +51,8 @@ class HttpProcessor(http.server.BaseHTTPRequestHandler):
 		return self.weather['temperature']
 
 	def get_description(self):
-		self.description = self.weather['weather_descriptions']
+		description = self.weather['weather_descriptions']
+		return description
 
 
 	def url_parsing(self, url):
