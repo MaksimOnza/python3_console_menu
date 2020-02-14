@@ -30,9 +30,7 @@ class HttpProcessor(http.server.BaseHTTPRequestHandler):
 		self.send_response(200)
 		self.send_header('content-type','text/html')
 		self.end_headers()
-		
 		self.url_parsing(self.path)
-
 		self.temperature = self.get_temperature(self.resource, self.city)
 		self.get_description()
 		self.wfile.write(json.dumps({
