@@ -20,6 +20,7 @@ resources = {
 
 Handler = http.server.BaseHTTPRequestHandler
 
+
 class HttpProcessor(http.server.BaseHTTPRequestHandler):
 		
 
@@ -38,17 +39,13 @@ class HttpProcessor(http.server.BaseHTTPRequestHandler):
 			'temperature': self.temperature,
 			'description': self.description
 			}).encode())
-		self.wfile.write('\r'.encode())
-		self.wfile.write('Temperature in '.encode())
-		self.wfile.write((self.listToString(self.city)).capitalize().encode())
-		self.wfile.write(' => '.encode())
-		self.wfile.write(str(self.temperature).encode())
-		self.wfile.write('*C'.encode())
+		self.display_weather()
 		
 	
 	def get_temperature(self, resource, city):
 		self.weather = resources[self.listToString(resource)].get_temperature(self.listToString(city))
 		return self.weather['temperature']
+
 
 	def get_description(self):
 		description = self.weather['weather_descriptions']
@@ -62,6 +59,17 @@ class HttpProcessor(http.server.BaseHTTPRequestHandler):
 		self.resource = dict_param[RESOURCE]
 		self.city = dict_param[CITY]
 		return dict_param
+
+
+	def display_weather(self):
+		self.wfile.write('\r'.encode())
+		self.wfile.write('Temperature in '.encode())
+		self.wfile.write((self.listToString(self.city)).capitalize().encode())
+		self.wfile.write(' => '.encode())
+		self.wfile.write(str(self.temperature).encode())
+		self.wfile.write('*C'.encode())
+		self.wfile.write('. Today '.encode())
+		self.wfile.write(self.listToString(self.description).encode())
 
 
 	def listToString(self, s):
