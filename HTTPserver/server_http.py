@@ -5,9 +5,9 @@ from resources.weatherstack import WeatherstackResource
 from resources.worldweatheronline import WorldweatheronlineResource
 from resources.sinoptik import SinoptikResource
 import config
-import urllib.parse as urllib
-import urllib.parse as parse_qs
-#from urlparse import urlparse, parse_qs
+#import urllib.parse as urllib
+#import urllib.parse as parse_qs
+from urllib.parse import parse_qs, urlparse
 import json
 
 PORT = 8000
@@ -49,7 +49,7 @@ class HttpProcessor(http.server.BaseHTTPRequestHandler):
 
 
 	def parsing(self):
-		query_components = urllib.parse_qs(urllib.urlparse(self.path).query)
+		query_components = parse_qs(urlparse(self.path).query)
 		return query_components
 
 
