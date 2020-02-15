@@ -1,12 +1,13 @@
-import http.server
-import socketserver
+from resources.worldweatheronline import WorldweatheronlineResource
 from resources.openweathermap import OpenweathermapResource
 from resources.weatherstack import WeatherstackResource
-from resources.worldweatheronline import WorldweatheronlineResource
 from resources.sinoptik import SinoptikResource
-import config
 from urllib.parse import parse_qs, urlparse
+import http.server
+import config
 import json
+
+
 
 PORT = 8000
 CITY = 'city'
