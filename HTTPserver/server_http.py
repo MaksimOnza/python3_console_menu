@@ -5,8 +5,6 @@ from resources.weatherstack import WeatherstackResource
 from resources.worldweatheronline import WorldweatheronlineResource
 from resources.sinoptik import SinoptikResource
 import config
-#import urllib.parse as urllib
-#import urllib.parse as parse_qs
 from urllib.parse import parse_qs, urlparse
 import json
 
