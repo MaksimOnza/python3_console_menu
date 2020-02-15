@@ -6,6 +6,8 @@ from resources.worldweatheronline import WorldweatheronlineResource
 from resources.sinoptik import SinoptikResource
 import config
 import urllib.parse as urllib
+import urllib.parse as parse_qs
+#from urlparse import urlparse, parse_qs
 import json
 
 PORT = 8000
@@ -25,57 +27,30 @@ class HttpProcessor(http.server.BaseHTTPRequestHandler):
 		
 
 	def do_GET(self):
-		self.city = ''
-		self.resource = ''
-		self.description = ''
 		self.send_response(200)
 		self.send_header('content-type','text/html')
 		self.end_headers()
-		self.url_parsing(self.path)
-		self.temperature = self.get_temperature(self.resource, self.city)
-		self.description = self.get_description()
+		self.query_components = self.parsing()
+		self.city = self.query_components[CITY][0]
+		self.resource = self.query_components[RESOURCE][0]
+		self.weather = self.get_weather(self.resource, self.city)
+		self.temperature = self.weather['temperature']
+		self.description = self.weather['weather_descriptions']
 		self.wfile.write(json.dumps({
 			'name_city': self.city,
 			'temperature': self.temperature,
 			'description': self.description
 			}).encode())
-		self.display_weather()
 		
 	
-	def get_temperature(self, resource, city):
-		self.weather = resources[self.listToString(resource)].get_temperature(self.listToString(city))
-		return self.weather['temperature']
+	def get_weather(self, resource, city):
+		weather = resources[resource].get_temperature(city)
+		return weather
 
 
-	def get_description(self):
-		description = self.weather['weather_descriptions']
-		return description
-
-
-	def url_parsing(self, url):
-		base_url = urllib.urlparse(url)
-		split_after_url = base_url.query.split(' ')[0]
-		dict_param = urllib.parse_qs(split_after_url)
-		self.resource = dict_param[RESOURCE]
-		self.city = dict_param[CITY]
-		return dict_param
-
-
-	def display_weather(self):
-		self.wfile.write('\r'.encode())
-		self.wfile.write('Temperature in '.encode())
-		self.wfile.write((self.listToString(self.city)).capitalize().encode())
-		self.wfile.write(' => '.encode())
-		self.wfile.write(str(self.temperature).encode())
-		self.wfile.write('*C'.encode())
-		self.wfile.write('. Today '.encode())
-		self.wfile.write(self.listToString(self.description).encode())
-
-
-	def listToString(self, s):
-		str1 = ""  
-		return (str1.join(s)) 
-	
+	def parsing(self):
+		query_components = urllib.parse_qs(urllib.urlparse(self.path).query)
+		return query_components
 
 
 serv = http.server.HTTPServer(("localhost",PORT),HttpProcessor)
