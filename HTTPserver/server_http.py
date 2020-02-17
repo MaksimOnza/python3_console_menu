@@ -18,6 +18,11 @@ resources = {
 	'worldweatheronline': WorldweatheronlineResource(config.WORLDWEATHERONLINE_ACCESS_KEY),
 	'sinoptik': SinoptikResource()
 }
+weather_data_dict = {
+	'weatherstack': ['temperature', 'weather_descriptions'],
+	'openweathermap': [['main', 'temp'], ['weather', 0,  'description']],
+	'worldweatheronline': [['current_condition', 0, 'temp_C'], ['current_condition', 0, 'weatherDesc', 0, 'value']]
+}
 
 Handler = http.server.BaseHTTPRequestHandler
 
@@ -32,9 +37,9 @@ class HttpProcessor(http.server.BaseHTTPRequestHandler):
 		self.query_components = self.parsing()
 		self.city = self.query_components[CITY][0]
 		self.resource = self.query_components[RESOURCE][0]
-		self.weather = self.get_weather(self.resource, self.city)
-		self.temperature = self.weather['temperature']
-		self.description = self.weather['weather_descriptions']
+		self.data_weather = self.get_data_weather(self.resource, self.city)
+		self.temperature = self.get_temp_descript(self.data_weather, self.resource, 0)
+		self.description = self.get_temp_descript(self.data_weather, self.resource, 1)
 		self.wfile.write(json.dumps({
 			'name_city': self.city,
 			'temperature': self.temperature,
@@ -42,10 +47,22 @@ class HttpProcessor(http.server.BaseHTTPRequestHandler):
 			}).encode())
 		
 	
-	def get_weather(self, resource, city):
-		weather = resources[resource].get_temperature(city)
-		return weather
+	def get_data_weather(self, resource, city):
+		data_weather = resources[resource].get_temperature(city)
+		return data_weather
 
+	def get_temp_descript(self, data, resource, index):
+		query_list = weather_data_dict[resource][index]
+		output = query_list
+		if isinstance(query_list, list):
+			for line in list(query_list):
+				temp = data[line]
+				data = temp
+				output = data
+		else:
+			output = data[query_list]
+		return output
+	
 
 	def parsing(self):
 		query_components = parse_qs(urlparse(self.path).query)

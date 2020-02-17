@@ -6,8 +6,8 @@ class WeatherstackResource:
 	def __init__(self, access_key: str):
 		self.__access_key = access_key
 
-	def get_temperature(self, city: str) -> int:
+	def get_temperature(self, city: str):
 		response = requests.get(f'http://api.weatherstack.com/current?access_key={self.__access_key}&query={city}')
 		data = response.json()
 		
-		return data['current']
+		return data['current']#[temp]
