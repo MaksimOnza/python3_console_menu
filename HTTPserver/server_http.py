@@ -6,6 +6,7 @@ from urllib.parse import parse_qs, urlparse
 import http.server
 import config
 import json
+import time
 
 
 
@@ -18,52 +19,53 @@ resources = {
 	'worldweatheronline': WorldweatheronlineResource(config.WORLDWEATHERONLINE_ACCESS_KEY),
 	'sinoptik': SinoptikResource()
 }
-weather_data_dict = {
-	'weatherstack': ['temperature', 'weather_descriptions'],
-	'openweathermap': [['main', 'temp'], ['weather', 0,  'description']],
-	'worldweatheronline': [['current_condition', 0, 'temp_C'], ['current_condition', 0, 'weatherDesc', 0, 'value']]
-}
 
 Handler = http.server.BaseHTTPRequestHandler
 
 
 class HttpProcessor(http.server.BaseHTTPRequestHandler):
 		
+	kesh_dict = {}
 
 	def do_GET(self):
 		self.send_response(200)
 		self.send_header('content-type','text/html')
 		self.end_headers()
-		self.query_components = self.parsing()
-		self.city = self.query_components[CITY][0]
-		self.resource = self.query_components[RESOURCE][0]
-		self.data_weather = self.get_data_weather(self.resource, self.city)
-		self.temperature = self.get_temp_descript(self.data_weather, self.resource, 0)
-		self.description = self.get_temp_descript(self.data_weather, self.resource, 1)
+		query_components = self.parsing()
+		city = query_components[CITY][0]
+		resource = query_components[RESOURCE][0]
+		current_time = time.time()
+		if (city+resource in self.kesh_dict.keys()):
+			if ((current_time - self.kesh_dict['time']) > 3600):
+				data_weather = self.get_data_weather(resource, city)
+				temperature = data_weather['temp']
+				description = data_weather['desc']
+			else:
+				temperature =  self.kesh_dict[city]['temp']
+				description = self.kesh_dict[city]['desc']
+		else:
+			data_weather = self.get_data_weather(resource, city)
+			temperature = data_weather['temp']
+			description = data_weather['desc']
+		self.kesh_dict = {
+			city+resource: {	
+					'temp': temperature,
+					'desc': description,
+					},
+			'time': time.time()
+			}
 		self.wfile.write(json.dumps({
-			'name_city': self.city,
-			'temperature': self.temperature,
-			'description': self.description
+			'name_city': city,
+			'temperature': temperature,
+			'description': description
 			}).encode())
-		
-	
+
+
 	def get_data_weather(self, resource, city):
-		data_weather = resources[resource].get_temperature(city)
+		data_weather = resources[resource].get_data(city)
 		return data_weather
 
-	def get_temp_descript(self, data, resource, index):
-		query_list = weather_data_dict[resource][index]
-		output = query_list
-		if isinstance(query_list, list):
-			for line in list(query_list):
-				temp = data[line]
-				data = temp
-				output = data
-		else:
-			output = data[query_list]
-		return output
 	
-
 	def parsing(self):
 		query_components = parse_qs(urlparse(self.path).query)
 		return query_components
@@ -71,3 +73,15 @@ class HttpProcessor(http.server.BaseHTTPRequestHandler):
 
 serv = http.server.HTTPServer(("localhost",PORT),HttpProcessor)
 serv.serve_forever()
+
+
+#идеальный код книга
+#рефакторинг кода в серве(ифэлс зло)
+#аналог на ПХП без внешних библ PHP.net
+#
+#
+#
+#
+#
+#
+#
