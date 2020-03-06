@@ -3,10 +3,12 @@ from resources.openweathermap import OpenweathermapResource
 from resources.weatherstack import WeatherstackResource
 from resources.sinoptik import SinoptikResource
 from urllib.parse import parse_qs, urlparse
+from resources.cache_data import CacheData
 import http.server
 import config
 import json
 import time
+
 
 
 
@@ -25,7 +27,7 @@ Handler = http.server.BaseHTTPRequestHandler
 
 class HttpProcessor(http.server.BaseHTTPRequestHandler):
 		
-	kesh_dict = {}
+	operator = CacheData()
 
 	def do_GET(self):
 		self.send_response(200)
@@ -34,26 +36,20 @@ class HttpProcessor(http.server.BaseHTTPRequestHandler):
 		query_components = self.parsing()
 		city = query_components[CITY][0]
 		resource = query_components[RESOURCE][0]
-		current_time = time.time()
-		if (city+resource in self.kesh_dict.keys()):
-			if ((current_time - self.kesh_dict['time']) > 3600):
-				data_weather = self.get_data_weather(resource, city)
-				temperature = data_weather['temp']
-				description = data_weather['desc']
-			else:
-				temperature =  self.kesh_dict[city]['temp']
-				description = self.kesh_dict[city]['desc']
+		if(self.operator.check_cache(resource+city)):
+			data_weather = self.operator.kesh_dict
 		else:
-			data_weather = self.get_data_weather(resource, city)
-			temperature = data_weather['temp']
-			description = data_weather['desc']
-		self.kesh_dict = {
-			city+resource: {	
+			data_weather = self.get_data_weather(resource, city)		
+		description = data_weather['desc']
+		temperature = data_weather['temp']
+		self.operator.kesh_dict = {
+			city+resource : {	
 					'temp': temperature,
 					'desc': description,
 					},
 			'time': time.time()
 			}
+		
 		self.wfile.write(json.dumps({
 			'name_city': city,
 			'temperature': temperature,
@@ -78,10 +74,4 @@ serv.serve_forever()
 #идеальный код книга
 #рефакторинг кода в серве(ифэлс зло)
 #аналог на ПХП без внешних библ PHP.net
-#
-#
-#
-#
-#
-#
 #
